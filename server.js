@@ -191,20 +191,6 @@ app.delete("/api/products/:id", verifyToken, (req, res) => {
   });
 });
 
-app.get("/api/create-admin", async (req, res) => {
-  const bcrypt = require("bcryptjs")
-  const hashed = await bcrypt.hash("xcurr4t3", 10)
-  
-  db.query(
-    "INSERT INTO admins (username, password) VALUES (?, ?)",
-    ["admin", hashed],
-    (err, result) => {
-      if (err) return res.status(500).json(err)
-      res.json({ message: "Admin berhasil dibuat!" })
-    }
-  )
-})
-
 app.get("/api/products/:id", (req, res) => {
   const { id } = req.params;
 
@@ -278,5 +264,5 @@ app.get("/api/admin/me", verifyToken, (req, res) => {
 })
 
 app.listen(5000, () => {
-  console.log("API running on process.env.REACT_APP_API_URL");
+  console.log("API running on ${process.env.REACT_APP_API_URL}");
 });
