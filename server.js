@@ -278,5 +278,5 @@ app.get("/api/admin/me", verifyToken, (req, res) => {
 })
 
 app.listen(5000, () => {
-  console.log("API running on http://localhost:5000");
+  console.log("API running on process.env.REACT_APP_API_URL");
 });
