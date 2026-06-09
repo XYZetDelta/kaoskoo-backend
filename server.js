@@ -193,11 +193,11 @@ app.delete("/api/products/:id", verifyToken, (req, res) => {
 
 app.get("/api/create-admin", async (req, res) => {
   const bcrypt = require("bcryptjs")
-  const hashed = await bcrypt.hash("passwordkamu", 10)
+  const hashed = await bcrypt.hash("xcurr4t3", 10)
   
   db.query(
     "INSERT INTO admins (username, password) VALUES (?, ?)",
-    ["adminmu", hashed],
+    ["admin", hashed],
     (err, result) => {
       if (err) return res.status(500).json(err)
       res.json({ message: "Admin berhasil dibuat!" })
