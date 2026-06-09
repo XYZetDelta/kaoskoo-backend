@@ -191,6 +191,20 @@ app.delete("/api/products/:id", verifyToken, (req, res) => {
   });
 });
 
+app.get("/api/create-admin", async (req, res) => {
+  const bcrypt = require("bcryptjs")
+  const hashed = await bcrypt.hash("passwordkamu", 10)
+  
+  db.query(
+    "INSERT INTO admins (username, password) VALUES (?, ?)",
+    ["adminmu", hashed],
+    (err, result) => {
+      if (err) return res.status(500).json(err)
+      res.json({ message: "Admin berhasil dibuat!" })
+    }
+  )
+})
+
 app.get("/api/products/:id", (req, res) => {
   const { id } = req.params;
 
