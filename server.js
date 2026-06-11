@@ -243,7 +243,11 @@ app.post("/api/admin/login", (req, res) => {
 })
 
 app.post("/api/admin/logout", (req, res) => {
-  res.clearCookie("token")
+  res.clearCookie("token", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none"
+})
   res.json({ message: "Logged out" })
 })
 
