@@ -12,7 +12,10 @@ const app = express();
 const fs = require("fs");
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "https://kaoskoo-frontend.vercel.app"  // ← tambah ini
+  ],
   credentials: true
 }))
 app.use(express.json());
