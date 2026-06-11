@@ -11,6 +11,16 @@ const db = require("./db");
 const app = express();
 const fs = require("fs");
 
+app.get("/api/routes", (req, res) => {
+  const routes = app._router.stack
+    .filter(r => r.route)
+    .map(r => ({
+      path: r.route.path,
+      method: Object.keys(r.route.methods)[0].toUpperCase()
+    }))
+  res.json(routes)
+})
+
 app.use(cors({
   origin: [
     "http://localhost:3000",
