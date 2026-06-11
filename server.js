@@ -232,11 +232,11 @@ app.post("/api/admin/login", (req, res) => {
     const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, { expiresIn: "1h" })
 
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "strict",
-      maxAge: 60 * 60 * 1000
-    })
+    httpOnly: true,
+    secure: true,        // ← ganti false ke true karena sudah HTTPS
+    sameSite: "none",    // ← ganti strict ke none untuk cross-domain
+    maxAge: 60 * 60 * 1000
+  })
 
     res.json({ message: "Login berhasil" })
   })
