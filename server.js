@@ -24,7 +24,7 @@ app.get("/api/routes", (req, res) => {
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://kaoskoo-frontend.vercel.app"  // ← tambah ini
+    "https://kaoskoo.vercel.app"  // ← tambah ini
   ],
   credentials: true
 }))
